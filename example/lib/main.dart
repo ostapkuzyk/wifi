@@ -62,20 +62,23 @@ class _MyHomePageState extends State<MyHomePage> {
         children: [
           Row(
             children: <Widget>[
-              RaisedButton(
+              ElevatedButton(
                 child: Text('ssid'),
                 onPressed: _getWifiName,
               ),
               Offstage(
                 offstage: level == 0,
-                child: Image.asset(level == 0 ? 'images/wifi1.png' : 'images/wifi$level.png', width: 28, height: 21),
+                child: Image.asset(
+                    level == 0 ? 'images/wifi1.png' : 'images/wifi$level.png',
+                    width: 28,
+                    height: 21),
               ),
               Text(_wifiName),
             ],
           ),
           Row(
             children: <Widget>[
-              RaisedButton(
+              ElevatedButton(
                 child: Text('ip'),
                 onPressed: _getIP,
               ),
@@ -108,7 +111,7 @@ class _MyHomePageState extends State<MyHomePage> {
               password = value;
             },
           ),
-          RaisedButton(
+          ElevatedButton(
             child: Text('connection'),
             onPressed: connection,
           ),
@@ -117,7 +120,8 @@ class _MyHomePageState extends State<MyHomePage> {
     } else {
       return Column(children: <Widget>[
         ListTile(
-          leading: Image.asset('images/wifi${ssidList[index - 1].level}.png', width: 28, height: 21),
+          leading: Image.asset('images/wifi${ssidList[index - 1].level}.png',
+              width: 28, height: 21),
           title: Text(
             ssidList[index - 1].ssid,
             style: TextStyle(
@@ -141,8 +145,8 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Future<Null> _getWifiName() async {
-    int l = await Wifi.level;
-    String wifiName = await Wifi.ssid;
+    int l = await Wifi.level ?? 0;
+    String wifiName = await Wifi.ssid ?? 'Unknown Wifi';
     setState(() {
       level = l;
       _wifiName = wifiName;
@@ -150,7 +154,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Future<Null> _getIP() async {
-    String ip = await Wifi.ip;
+    String ip = await Wifi.ip ?? 'Unknown IP';
     setState(() {
       _ip = ip;
     });

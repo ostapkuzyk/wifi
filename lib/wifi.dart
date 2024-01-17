@@ -5,17 +5,18 @@ import 'package:flutter/services.dart';
 enum WifiState { error, success, already }
 
 class Wifi {
-  static const MethodChannel _channel = const MethodChannel('plugins.ly.com/wifi');
+  static const MethodChannel _channel =
+      const MethodChannel('plugins.ly.com/wifi');
 
-  static Future<String> get ssid async {
+  static Future<String?> get ssid async {
     return await _channel.invokeMethod('ssid');
   }
 
-  static Future<int> get level async {
+  static Future<int?> get level async {
     return await _channel.invokeMethod('level');
   }
 
-  static Future<String> get ip async {
+  static Future<String?> get ip async {
     return await _channel.invokeMethod('ip');
   }
 
