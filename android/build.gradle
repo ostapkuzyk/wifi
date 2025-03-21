@@ -27,6 +27,8 @@ android {
     defaultConfig {
         minSdkVersion 21
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        namespace 'com.ly.wifi'
     }
     lintOptions {
         disable 'InvalidPackage'
